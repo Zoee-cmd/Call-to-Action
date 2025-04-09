@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sustainable Actions Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+/* Modern Enhancements */
+.w3-card {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.w3-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.progress-container {
+    position: relative;
+    height: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    position: absolute;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+.action-item {
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 4px solid #4CAF50;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.action-item:hover {
+    background-color: #f1f1f1;
+    transform: translateX(5px);
+}
+
+.stats-card {
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.stats-card i {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.impact-meter {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.impact-meter::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(#4CAF50 0% 75%, #f1f1f1 75% 100%);
+}
+
+.impact-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .w3-col {
+        width: 100%;
+    }
+}
+</style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <span class="w3-bar-item w3-right">Sustainable Actions Tracker</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img src="Anesu.jpg" class="w3-circle w3-margin-right" style="width:46px">
+    </div>
+    <div class="w3-col s8 w3-bar">
+      <span>Welcome, <strong>Anesu</strong></span><br>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Action Categories</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a>
+    <a href="#energy" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bolt fa-fw"></i> Energy</a>
+    <a href="#waste" class="w3-bar-item w3-button w3-padding"><i class="fa fa-recycle fa-fw"></i> Waste</a>
+    <a href="#water" class="w3-bar-item w3-button w3-padding"><i class="fa fa-tint fa-fw"></i> Water</a>
+    <a href="#transport" class="w3-bar-item w3-button w3-padding"><i class="fa fa-car fa-fw"></i> Transport</a>
+    <a href="#food" class="w3-bar-item w3-button w3-padding"><i class="fa fa-utensils fa-fw"></i> Food</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-leaf"></i> My Sustainable Actions</b></h5>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="stats-card w3-card w3-white">
+        <i class="fa fa-bolt"></i>
+        <h3>Energy Saved</h3>
+        <h2>1,234 kWh</h2>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="stats-card w3-card w3-white">
+        <i class="fa fa-recycle"></i>
+        <h3>Waste Reduced</h3>
+        <h2>456 kg</h2>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="stats-card w3-card w3-white">
+        <i class="fa fa-tint"></i>
+        <h3>Water Saved</h3>
+        <h2>789 L</h2>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="stats-card w3-card w3-white">
+        <i class="fa fa-car"></i>
+        <h3>CO2 Reduced</h3>
+        <h2>321 kg</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-half">
+      <div class="w3-card w3-white w3-padding">
+        <h3>Your Impact</h3>
+        <div class="impact-meter">
+          <div class="impact-value">75%</div>
+        </div>
+        <p>You're making great progress! Keep up the good work.</p>
+      </div>
+    </div>
+    <div class="w3-half">
+      <div class="w3-card w3-white w3-padding">
+        <h3>Recent Actions</h3>
+        <div class="action-item">
+          <h4>Installed LED Bulbs</h4>
+          <p>Reduced energy consumption by 15%</p>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 75%"></div>
+          </div>
+        </div>
+        <div class="action-item">
+          <h4>Started Composting</h4>
+          <p>Reduced food waste by 30%</p>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 60%"></div>
+          </div>
+        </div>
+        <div class="action-item">
+          <h4>Water Conservation</h4>
+          <p>Installed low-flow fixtures</p>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 45%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container w3-padding-16">
+    <h3>Suggested Actions</h3>
+    <div class="w3-row-padding">
+      <div class="w3-third">
+        <div class="w3-card w3-white w3-padding">
+          <h4>Energy Efficiency</h4>
+          <ul class="w3-ul">
+            <li>Switch to renewable energy</li>
+            <li>Use smart thermostats</li>
+            <li>Unplug unused devices</li>
+          </ul>
+          <button class="w3-button w3-green w3-margin-top">Get Started</button>
+        </div>
+      </div>
+      <div class="w3-third">
+        <div class="w3-card w3-white w3-padding">
+          <h4>Waste Reduction</h4>
+          <ul class="w3-ul">
+            <li>Start composting</li>
+            <li>Use reusable containers</li>
+            <li>Recycle electronics</li>
+          </ul>
+          <button class="w3-button w3-green w3-margin-top">Get Started</button>
+        </div>
+      </div>
+      <div class="w3-third">
+        <div class="w3-card w3-white w3-padding">
+          <h4>Water Conservation</h4>
+          <ul class="w3-ul">
+            <li>Fix leaky faucets</li>
+            <li>Install rain barrels</li>
+            <li>Use water-efficient appliances</li>
+          </ul>
+          <button class="w3-button w3-green w3-margin-top">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>Track Your Sustainable Journey</h4>
+    <p>Powered by GreenTech - Making Sustainability Measurable</p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html> 
